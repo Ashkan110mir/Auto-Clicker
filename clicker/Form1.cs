@@ -28,7 +28,7 @@ namespace clicker
         private void btnclick_Click(object sender, EventArgs e)
         {
             int number;
-            if (lblnumber.Text == "تعداد کلیک")
+            if (lblnumber.Text == "Number of click")
             {
                 number = 0;
                 lblnumber.Text = number.ToString();
@@ -41,38 +41,19 @@ namespace clicker
             }
 
         }
-
-        private void btnautoclick_Click(object sender, EventArgs e)
+ 
+        private void tracker()
         {
-           
+            while (true)
+            {
+                int pointx = Cursor.Position.X;
+                int pointy = Cursor.Position.Y;
 
-
-            //Thread trackertread = new Thread(tracker);
-            //label1.Text = Cursor.Position.X.ToString();
-            //label2.Text = Cursor.Position.Y.ToString();
-            //mainx = Cursor.Position.X;
-            //mainy = Cursor.Position.Y;
-            //trackertread.Start();
-
-
-
-
-            //Thread mouse_click = new Thread(mouseclick);
-            //mouse_click.Start();
-
+                label1.Invoke((MethodInvoker)(() => label1.Text = pointx.ToString()));
+                label2.Invoke((MethodInvoker)(() => label2.Text = pointy.ToString()));
+                Thread.Sleep(2000);
+            }
         }
-        //private void tracker()
-        //{
-        //    while (start == true)
-        //    {
-        //        int pointx = Cursor.Position.X;
-        //        int pointy = Cursor.Position.Y;
-
-        //        label1.Invoke((MethodInvoker)(() => label1.Text = pointx.ToString()));
-        //        label2.Invoke((MethodInvoker)(() => label2.Text = pointy.ToString()));
-        //        Thread.Sleep(2000);
-        //    }
-        //}
 
         private void press()
         {
@@ -83,7 +64,7 @@ namespace clicker
                     start = true;
                     Thread mouse_click = new Thread(mouseclick);
                     mainx = Cursor.Position.X; 
-                    mainy = Cursor.Position.Y;
+                    mainy = Cursor.Position.Y;               
                     mouse_click.Start();
                 }
                 if (GetAsyncKeyState(stopid) < 0)
@@ -100,6 +81,7 @@ namespace clicker
         static extern short GetAsyncKeyState(int vkey);
 
 
+
         const uint leftdown = 0x02;
         const uint leftup = 0x04;
         const int resumeid = 0x52;
@@ -110,8 +92,8 @@ namespace clicker
             while (start == true)
             {
                 Random rnd = new Random();
-                int randomx = rnd.Next(10, 30);
-                int randomy = rnd.Next(10, 30);
+                int randomx = rnd.Next(10, 20);
+                int randomy = rnd.Next(10, 20);
                 int back_or_forward = rnd.Next(1, 3);
                 int x=mainx;
                 int y=mainy;
@@ -126,19 +108,21 @@ namespace clicker
                     y = y + randomy;
                 }
                 Point mainpoint = new Point(mainx, mainy);
-                uint pointx = (uint)(int)mainx;
-                uint pointy = (uint)(int)mainy;
+                Cursor.Position = mainpoint;
                 Point randompoint = new Point(x, y);
                 Cursor.Position = randompoint;
                 mouse_event(leftdown, 0, 0, 0, IntPtr.Zero);
                 mouse_event(leftup, 0, 0, 0, IntPtr.Zero);
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
 
         }
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            Thread track = new Thread(tracker);
+            track.Start();
+
             Thread start = new Thread(press);
             start.Start();
         }
