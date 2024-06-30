@@ -49,8 +49,8 @@ namespace clicker
                 int pointx = Cursor.Position.X;
                 int pointy = Cursor.Position.Y;
 
-                label1.Invoke((MethodInvoker)(() => label1.Text = pointx.ToString()));
-                label2.Invoke((MethodInvoker)(() => label2.Text = pointy.ToString()));
+                lblx.Invoke((MethodInvoker)(() => lblx.Text = pointx.ToString()));
+                lbly.Invoke((MethodInvoker)(() => lbly.Text = pointy.ToString()));
                 Thread.Sleep(2000);
             }
         }
@@ -63,8 +63,8 @@ namespace clicker
                 {
                     start = true;
                     Thread mouse_click = new Thread(mouseclick);
-                    mainx = Cursor.Position.X; 
-                    mainy = Cursor.Position.Y;               
+                    mainx =int.Parse(lblx.Text); 
+                    mainy = int.Parse(lbly.Text);
                     mouse_click.Start();
                 }
                 if (GetAsyncKeyState(stopid) < 0)
@@ -92,20 +92,38 @@ namespace clicker
             while (start == true)
             {
                 Random rnd = new Random();
-                int randomx = rnd.Next(10, 20);
-                int randomy = rnd.Next(10, 20);
-                int back_or_forward = rnd.Next(1, 3);
+                int randomx = rnd.Next(5, 30);
+                int randomy = rnd.Next(5, 30);
+                int back_or_forward = rnd.Next(1, 5);
                 int x=mainx;
                 int y=mainy;
-                if (back_or_forward == 1)
+                switch(back_or_forward)
                 {
-                    x = x - randomx;
-                    y = y - randomy;
-                }
-                else if (back_or_forward == 2)
-                {
-                    x = x + randomx;
-                    y = y + randomy;
+                    case 1:
+                        {
+                            x = x - randomx;
+                            y = y - randomy;
+                            break;
+                        }
+                    case 2:
+                        {
+                            x = x + randomx;
+                            y = y + randomy;
+                            break;
+                        }
+                    case 3:
+                        {
+                            x = x - randomx;
+                            y = y + randomy;
+                            break;
+                        }
+                    case 4:
+                        {
+                            x = x + randomx;
+                            y = y - randomy;
+                            break;
+                        }
+
                 }
                 Point mainpoint = new Point(mainx, mainy);
                 Cursor.Position = mainpoint;
@@ -113,7 +131,7 @@ namespace clicker
                 Cursor.Position = randompoint;
                 mouse_event(leftdown, 0, 0, 0, IntPtr.Zero);
                 mouse_event(leftup, 0, 0, 0, IntPtr.Zero);
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             }
 
         }

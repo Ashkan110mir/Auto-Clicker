@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.btnclick = new System.Windows.Forms.Button();
             this.lblnumber = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblx = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbly = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnclick
@@ -55,31 +55,31 @@
             this.lblnumber.TabIndex = 1;
             this.lblnumber.Text = "Number of click";
             // 
-            // label1
+            // lblx
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(12, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "x";
+            this.lblx.AutoSize = true;
+            this.lblx.Location = new System.Drawing.Point(40, 28);
+            this.lblx.Name = "lblx";
+            this.lblx.Size = new System.Drawing.Size(12, 13);
+            this.lblx.TabIndex = 3;
+            this.lblx.Text = "x";
             // 
-            // label2
+            // lbly
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(12, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "y";
+            this.lbly.AutoSize = true;
+            this.lbly.Location = new System.Drawing.Point(40, 60);
+            this.lbly.Name = "lbly";
+            this.lbly.Size = new System.Drawing.Size(12, 13);
+            this.lbly.TabIndex = 4;
+            this.lbly.Text = "y";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 377);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbly);
+            this.Controls.Add(this.lblx);
             this.Controls.Add(this.lblnumber);
             this.Controls.Add(this.btnclick);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -95,9 +95,9 @@
 
         private System.Windows.Forms.Button btnclick;
         private System.Windows.Forms.Label lblnumber;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblx;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbly;
     }
 }
 
