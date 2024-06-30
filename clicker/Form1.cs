@@ -65,11 +65,15 @@ namespace clicker
                     Thread mouse_click = new Thread(mouseclick);
                     mainx =int.Parse(lblx.Text); 
                     mainy = int.Parse(lbly.Text);
+                    LblStart.ForeColor = Color.Green;
+                    lblStop.ForeColor = Color.Red;
                     mouse_click.Start();
                 }
                 if (GetAsyncKeyState(stopid) < 0)
                 {
                     start = false;
+                    LblStart.ForeColor = Color.Red;
+                    lblStop.ForeColor = Color.Green;
                     Thread mouse_click = new Thread(mouseclick);
                     mouse_click.Abort();
                 }
@@ -131,7 +135,7 @@ namespace clicker
                 Cursor.Position = randompoint;
                 mouse_event(leftdown, 0, 0, 0, IntPtr.Zero);
                 mouse_event(leftup, 0, 0, 0, IntPtr.Zero);
-                Thread.Sleep(500);
+                Thread.Sleep((int)numInterval.Value);
             }
 
         }
